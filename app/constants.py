@@ -1,1 +1,1 @@
-POSSIBLE_MODES = ['TDM', 'JUGGERNAUT', 'HARDPOINT', 'DOMINATION', 'CTF', 'FFA', 'KOTH']
+POSSIBLE_MODES = ['tdm', 'juggernaut', 'hardpoint', 'domination', 'ctf', 'ffa', 'koth']
