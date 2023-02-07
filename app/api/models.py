@@ -1,5 +1,4 @@
 from django.db import models
-from constants import MODE_NUMBER_REFERENCE
 
 
 class GameUser(models.Model):
@@ -8,7 +7,7 @@ class GameUser(models.Model):
 
     class Meta:
         verbose_name = "Game User"
-        verbose_name_plural = "Game Users"
+        
 
 class UserStats(models.Model):
     user = models.ForeignKey(GameUser, on_delete=models.CASCADE)
@@ -19,13 +18,3 @@ class UserStats(models.Model):
 
     class Meta:
         verbose_name = "User Stat"
-        verbose_name_plural = "User Stats"
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-    #     for i in MODE_NUMBER_REFERENCE:
-    #         UserStats.object.create(
-    #             user=super(),
-    #             mode=MODE_NUMBER_REFERENCE[i]
-    #         )
-        
