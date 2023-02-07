@@ -1,46 +1,31 @@
-import json
 from django.db import models
+from constants import MODE_NUMBER_REFERENCE
 
-# Create your models here.
 
 class GameUser(models.Model):
     user_id = models.IntegerField(primary_key=True)
     first_joined_game = models.DateTimeField(auto_now=False, auto_now_add=True) # Track when object is created, don't overide when saved
-    user_stats = models.JSONField(default={
-        'tdm': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-        'juggernaut': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-        'hardpoint': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-        'Domination': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-        'ctf': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-        'ffa': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-        'koth': {
-            'wins': 0,
-            'kills': 0,
-            'Topfrags': 0
-        },
-    })
-    
+
+    class Meta:
+        verbose_name = "Game User"
+        verbose_name_plural = "Game Users"
+
+class UserStats(models.Model):
+    user = models.ForeignKey(GameUser, on_delete=models.CASCADE)
+    mode = models.CharField(max_length=20)
+    wins = models.IntegerField(default=0)
+    kills = models.IntegerField(default=0)
+    topfrags = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name = "User Stat"
+        verbose_name_plural = "User Stats"
+
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     for i in MODE_NUMBER_REFERENCE:
+    #         UserStats.object.create(
+    #             user=super(),
+    #             mode=MODE_NUMBER_REFERENCE[i]
+    #         )
+        

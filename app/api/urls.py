@@ -1,6 +1,6 @@
 from django.urls import path
-from api.views import get_users
+from api.views import UserJoined
 
 urlpatterns = [
-    path('', get_users)
+    path('user_joined/<int:user_id>', UserJoined.as_view())
 ]
