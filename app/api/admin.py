@@ -1,5 +1,8 @@
 from django.contrib import admin
-from api.models import GameUser, UserStats
+
+from api.models import GameUser
+from api.models import UserStats
+from api.models import UserWeaponStats
 
 # Register your models here.
 
@@ -17,3 +20,4 @@ class GameUserAdmin(CustomModelAdmin):
 
 admin.site.register(GameUser, GameUserAdmin)
 admin.site.register(UserStats)
+admin.site.register(UserWeaponStats)

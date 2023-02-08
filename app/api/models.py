@@ -18,3 +18,15 @@ class UserStats(models.Model):
 
     class Meta:
         verbose_name = "User Stat"
+
+
+class UserWeaponStats(models.Model):
+    user = models.ForeignKey(GameUser, on_delete=models.CASCADE)
+    weapon = models.CharField(max_length=20)
+    kills = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'User Weapon Stat'
+    
+    
+    
