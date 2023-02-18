@@ -130,3 +130,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = ['https://darealzz-legendary-guacamole-4v6449jq4gq3qvxv-8000.preview.app.github.dev']
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'snowflake',
+        'TIMEOUT': None,
+    }
+}
