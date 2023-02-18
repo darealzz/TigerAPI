@@ -4,7 +4,8 @@ from django.db import models
 class GameUser(models.Model):
     user_id = models.IntegerField(primary_key=True)
     first_joined_game = models.DateTimeField(auto_now=False, auto_now_add=True) # Track when object is created, don't overide when saved
-
+    xp = models.IntegerField(default=0)
+            
     class Meta:
         verbose_name = "Game User"
         
@@ -27,6 +28,5 @@ class UserWeaponStats(models.Model):
 
     class Meta:
         verbose_name = 'User Weapon Stat'
-    
-    
+
     
