@@ -4,8 +4,6 @@ from api.models import GameUser
 from api.models import UserStats
 from api.models import UserWeaponStats
 
-# Register your models here.
-
 class CustomModelAdmin(admin.ModelAdmin):
     """
     Custom subclass to display all fields of a model
