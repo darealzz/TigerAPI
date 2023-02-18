@@ -63,3 +63,34 @@ class ModifyWeaponKills(APIView):
             'weapon_name': weapon_stats.weapon,
             'kills': weapon_stats.kills
         })
+
+class ModifyXP(APIView):
+
+    def patch(self, request, **kwargs):
+
+        try:
+            user = GameUser.objects.get(user_id=kwargs['user_id'])
+        except GameUser.DoesNotExist:
+            return Response({'detail': 'Provided "User ID" does not exist.'}, status=404)
+
+        user.xp = user.xp + kwargs['add_xp']
+        user.save()
+
+        return Response({
+            'user_id': user.user_id,
+            'total_xp': user.xp,
+        })
+
+class ShowXP(APIView):
+    
+    def get(self, request, **kwargs):
+
+        try:
+            user = GameUser.objects.get(user_id=kwargs['user_id'])
+        except GameUser.DoesNotExist:
+            return Response({'detail': 'Provided "User ID" does not exist.'}, status=404)
+
+        return Response({
+            'user_id': user.user_id,
+            'total_xp': user.xp,
+        })
