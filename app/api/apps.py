@@ -1,4 +1,8 @@
 from django.apps import AppConfig
+from django.core.cache import cache
+
+from roblox import client
+from constants import CLIENT_COOKIE
 
 
 class ApiConfig(AppConfig):
@@ -7,3 +11,5 @@ class ApiConfig(AppConfig):
 
     def ready(self):
         import api.signals
+
+        cache.set('Client', client.Client(CLIENT_COOKIE))
