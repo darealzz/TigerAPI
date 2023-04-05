@@ -6,6 +6,7 @@ from django.core.cache import cache
 from api.models import GameUser
 from api.models import UserStats
 from api.models import UserWeaponStats
+from api.models import UserMedals
 
 from constants import POSSIBLE_MODES, POSSIBLE_WEAPONS, RANK_XP_BINDS, GROUP_ID
 
@@ -24,6 +25,11 @@ def callback(sender, instance, created, **kwargs):
                 user=instance,
                 weapon=weapon
             )
+            
+        UserMedals.objects.create(
+            user=instance,
+            medal_name='Soldier of Radia'
+        )
     
     else:
         last_key = 0

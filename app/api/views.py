@@ -1,9 +1,15 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from django.utils import timezone
+
 from api.models import GameUser
 from api.models import UserStats
 from api.models import UserWeaponStats
+from api.models import UserMedals
+
+from dateutil.relativedelta import relativedelta
+
 
 class UserJoined(APIView):
 
@@ -93,4 +99,28 @@ class ShowXP(APIView):
         return Response({
             'user_id': user.user_id,
             'total_xp': user.xp,
+        })
+
+
+class asd(APIView):
+    
+    def get(self, request, **kwargs):
+
+        now = timezone.now()
+
+        three_months_ago = now - relativedelta(months=3)
+        six_months_ago = now - relativedelta(months=6)
+        one_year_ago = now - relativedelta(years=1)
+        two_years_ago = now - relativedelta(years=2)
+
+        medals_three_months = UserMedals.objects.filter(medal_name='Soldier of Radia', tier__lt=2, user__first_joined_game__gte=three_months_ago)
+        medals_six_months = UserMedals.objects.filter(medal_name='Soldier of Radia', tier__lt=3, user__first_joined_game__gte=six_months_ago, user__first_joined_game__lt=three_months_ago)
+        medals_one_year = UserMedals.objects.filter(medal_name='Soldier of Radia', tier__lt=4, user__first_joined_game__gte=one_year_ago, user__first_joined_game__lt=six_months_ago)
+        medals_two_years = UserMedals.objects.filter(medal_name='Soldier of Radia', tier__lt=5, user__first_joined_game__lt=two_years_ago)
+
+        # print(medals_three_months[0].user.first_joined_game)
+        print(medals_three_months, medals_six_months, medals_one_year, medals_two_years)
+        
+        return Response({
+            'user_id': '123'
         })
