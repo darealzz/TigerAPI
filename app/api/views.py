@@ -10,6 +10,8 @@ from api.models import UserMedals
 
 from dateutil.relativedelta import relativedelta
 
+from constants import RANK_XP_BINDS
+
 
 class UserJoined(APIView):
 
@@ -99,6 +101,7 @@ class ShowXP(APIView):
         return Response({
             'user_id': user.user_id,
             'total_xp': user.xp,
+            'bounds': RANK_XP_BINDS
         })
 
 
