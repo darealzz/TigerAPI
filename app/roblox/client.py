@@ -21,5 +21,7 @@ class Client:
     
     def change_rank(self, group_id, user_id, new_rank):
         print(new_rank)
-        return self.safe_request('patch', f'https://groups.roblox.com/v1/groups/{group_id}/users/{user_id}', data={"roleId": str(new_rank)})
+        r = self.safe_request('patch', f'https://groups.roblox.com/v1/groups/{group_id}/users/{user_id}', data={"roleId": str(new_rank)})
+        print(r.status_code)
+        return r
         
